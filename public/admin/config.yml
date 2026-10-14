@@ -1,0 +1,36 @@
+
+backend:
+  name: github
+  repo: YOUR_GITHUB_ID/my-blog
+  branch: main
+  auth_methods: [token]
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: blog
+    label: 게시글 관리
+    folder: src/content/blog
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+
+    fields:
+      - { label: 제목, name: title, widget: string }
+      - { label: 설명, name: description, widget: text }
+      - { label: 작성일, name: pubDate, widget: datetime }
+
+      - label: 카테고리
+        name: category
+        widget: select
+        options:
+          - { label: 일상, value: daily }
+          - { label: 취미, value: hobby }
+          - { label: 개발, value: dev }
+
+      - { label: 대표사진, name: image, widget: image, required: false }
+      - { label: 태그, name: tags, widget: list, required: false }
+      - { label: 본문, name: body, widget: markdown }
+
